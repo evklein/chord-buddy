@@ -62,4 +62,4 @@ typings/
 
 
 # Configuration Files (mySQL/Heroku)
-database.config
+db-config.js

@@ -8,20 +8,41 @@ const express = require('express');
 var mysql = require('mysql');
 
 const app = express();
-var connection = mysql.createConnection(DB_CONFIG);
 
+var connection = mysql.createConnection(DB_CONFIG);
 connection.connect((error) => {
 	if (error) console.log(error);
-	else {
-		connection.query('SELECT * from users', (error, results, fields) => { // Just testing SQL queries right now.
-			if (error) console.log(error);
-			else console.log(results);
-		});
-	}
-}) 
+});
 
+app.route('/api/progressions/:userID/:showOnlyUserProgressions/:progressionName').get((req, res) => {
+	let userID = +req.params['userID'];
+	let showOnlyUserProgressions = req.params['showOnlyUserProgressions'];
+	let progressionName = req.params['progressionName'];
+
+	let progressionQueryString = 'SELECT * FROM progressions';
+
+	console.log('User ID: ' + userID + ', Show only user progressions: ' + showOnlyUserProgressions + ' Progression Name: ' + progressionName);
+	if (showOnlyUserProgressions === 'true' && progressionName !== 'none') {
+		progressionQueryString += ' WHERE owner_id = ' + userID + ' AND name like \'' + progressionName + '%\''
+	} else {
+		if (showOnlyUserProgressions === 'true') progressionQueryString += ' WHERE owner_id = ' + userID;
+		if (progressionName !== 'none') progressionQueryString += ' WHERE name like \'' + progressionName + '%\'';
+	}
+
+	console.log(progressionQueryString);
+
+	connection.query(progressionQueryString, (error, results, fields) => {
+		res.send(results);
+	});
+});
+
+/* Progression Query Functions */
+
+
+
+// Start server
 app.listen(SERVER_CONFIG.port, () => {
-	console.log('Server started...');
+	
 });
 
 

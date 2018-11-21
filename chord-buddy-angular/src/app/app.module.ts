@@ -7,6 +7,8 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { HeaderComponent } from './header/header.component';
 import { ViewProgressionsPageComponent } from './view-progressions-page/view-progressions-page.component';
 import { CreateProgressionPageComponent } from './create-progression-page/create-progression-page.component';
+import { GeneralService } from './general.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,9 +20,10 @@ import { CreateProgressionPageComponent } from './create-progression-page/create
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [HttpClient, GeneralService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

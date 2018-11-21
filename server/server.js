@@ -6,8 +6,15 @@ const SERVER_CONFIG = require('./server-config.js'); // Same as above.
 
 const express = require('express');
 var mysql = require('mysql');
+const cors = require('cors');
+
+var corsOptions = {
+	origin: SERVER_CONFIG.corsOrigin,
+	optionsSuccessStatus: 200
+}
 
 const app = express();
+app.use(cors(corsOptions));
 
 var connection = mysql.createConnection(DB_CONFIG);
 connection.connect((error) => {
@@ -28,8 +35,6 @@ app.route('/api/progressions/:userID/:showOnlyUserProgressions/:progressionName'
 		if (showOnlyUserProgressions === 'true') progressionQueryString += ' WHERE owner_id = ' + userID;
 		if (progressionName !== 'none') progressionQueryString += ' WHERE name like \'' + progressionName + '%\'';
 	}
-
-	console.log(progressionQueryString);
 
 	connection.query(progressionQueryString, (error, results, fields) => {
 		res.send(results);

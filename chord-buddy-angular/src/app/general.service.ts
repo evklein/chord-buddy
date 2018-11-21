@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class GeneralService {
 
-  SERVER_ADDR = 'http://localhost:9094/';
+  SERVER_ADDR = 'http://localhost:32041/';
 
   constructor(private httpClient: HttpClient) { }
 

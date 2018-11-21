@@ -16,10 +16,25 @@ var corsOptions = {
 const app = express();
 app.use(cors(corsOptions));
 
-var connection = mysql.createConnection(DB_CONFIG);
-connection.connect((error) => {
-	if (error) console.log(error);
-});
+var connection;
+
+/* SQL Handler Function, starts loop again if it disconnects. */
+function connectToSQLAndHandle() {
+	connection = mysql.createConnection(DB_CONFIG);
+	connection.connect((error) => {
+		if (error) {
+			console.log('SQL connection error.');
+			setTimeout(connectToSQLAndHandle, 1000);
+		}
+	});
+
+	connection.on('error', (error) => {
+		if (error === 'PROTOCOL_CONNECTION_LOST') connectToSQLAndHandle();
+	});
+}
+connectToSQLAndHandle();
+
+/* App routes */
 
 app.route('/api/progressions/:userID/:showOnlyUserProgressions/:progressionName').get((req, res) => {
 	let userID = +req.params['userID'];
@@ -43,11 +58,9 @@ app.route('/api/progressions/:userID/:showOnlyUserProgressions/:progressionName'
 
 /* Progression Query Functions */
 
-
-
 // Start server
 app.listen(SERVER_CONFIG.port, () => {
-	
+	console.log('Server listening on ' + SERVER_CONFIG.port);
 });
 
 

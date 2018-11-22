@@ -64,3 +64,5 @@ typings/
 # Configuration Files (mySQL/Heroku)
 db-config.js
 server-config.js
+
+auth.environment.ts

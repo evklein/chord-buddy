@@ -36,6 +36,18 @@ connectToSQLAndHandle();
 
 /* App routes */
 
+app.route('/api/login/:email').get((request, response) => {
+	let email = request.params['email'];
+	console.log('Were moving');
+	console.log(email);
+	let queryString = 'SELECT * FROM users WHERE email = \'' + email + '\'';
+
+	connection.query(queryString, (error, results, fields) => {
+		response.send(results);
+		console.log(results);
+	});
+});
+
 app.route('/api/progressions/:userID/:showOnlyUserProgressions/:progressionName').get((req, res) => {
 	let userID = +req.params['userID'];
 	let showOnlyUserProgressions = req.params['showOnlyUserProgressions'];
@@ -43,7 +55,6 @@ app.route('/api/progressions/:userID/:showOnlyUserProgressions/:progressionName'
 
 	let progressionQueryString = 'SELECT * FROM progressions';
 
-	console.log('User ID: ' + userID + ', Show only user progressions: ' + showOnlyUserProgressions + ' Progression Name: ' + progressionName);
 	if (showOnlyUserProgressions === 'true' && progressionName !== 'none') {
 		progressionQueryString += ' WHERE owner_id = ' + userID + ' AND name like \'' + progressionName + '%\''
 	} else {

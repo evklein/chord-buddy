@@ -11,7 +11,6 @@ export class CreateProgressionPageComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    console.log('Token: ' + this.authService.token);
   }
 
 }

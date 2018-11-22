@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GeneralService } from '../general.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-view-progressions-page',
@@ -8,7 +9,7 @@ import { GeneralService } from '../general.service';
 })
 export class ViewProgressionsPageComponent implements OnInit {
 
-  constructor(private generalService: GeneralService) { }
+  constructor(private generalService: GeneralService, private authService: AuthService) { }
 
   userID = 1; // Todo
   progressionsToShow = [];

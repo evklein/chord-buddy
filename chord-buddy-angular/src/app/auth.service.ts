@@ -22,7 +22,6 @@ export class AuthService {
       let provider = new firebase.auth.GoogleAuthProvider();
       provider.addScope('profile');
       provider.addScope('email');
-      console.log('Were trying here...');
       this.angularFireAuth.auth
       .signInWithPopup(provider)
       .then(res => {
@@ -38,7 +37,23 @@ export class AuthService {
     this.userEmail = firebaseResponse.user.email;
 
     this.generalService.apiGet('api/login/' + this.userEmail, (data) => {
-      this.userID = data[0].id;
+      if (data.length == 0) {
+        this.registerNewUser();
+      } else {
+        this.userID = data[0].id;
+      }
     });
+  }
+
+  registerNewUser() {
+    this.generalService.apiPost('api/register', { 'email' : this.userEmail }, (data) => {
+      this.userID = data.insertId;
+    });
+  }
+
+  logout() {
+    this.firebaseToken = null;
+    this.userEmail = null;
+    this.userID = 0;
   }
 }

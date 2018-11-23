@@ -7,6 +7,7 @@ const SERVER_CONFIG = require('./server-config.js'); // Same as above.
 const express = require('express');
 var mysql = require('mysql');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 
 var corsOptions = {
 	origin: SERVER_CONFIG.corsOrigin,
@@ -15,6 +16,10 @@ var corsOptions = {
 
 const app = express();
 app.use(cors(corsOptions));
+app.use(bodyParser.urlencoded({
+	extended: true
+}));
+app.use(bodyParser.json());
 
 var connection;
 
@@ -24,7 +29,7 @@ function connectToSQLAndHandle() {
 	connection.connect((error) => {
 		if (error) {
 			console.log('SQL connection error.');
-			setTimeout(connectToSQLAndHandle, 1000);
+			setTimeout(connectToSQLAndHandle, 2000);
 		}
 	});
 
@@ -38,13 +43,18 @@ connectToSQLAndHandle();
 
 app.route('/api/login/:email').get((request, response) => {
 	let email = request.params['email'];
-	console.log('Were moving');
-	console.log(email);
 	let queryString = 'SELECT * FROM users WHERE email = \'' + email + '\'';
 
 	connection.query(queryString, (error, results, fields) => {
 		response.send(results);
-		console.log(results);
+	});
+});
+
+app.route('/api/register').post((request, response) => {
+	let queryString = 'INSERT INTO users (email, num_progressions) VALUES (\'' + request.body.email + '\', 0)';
+	
+	connection.query(queryString, (error, results, fields) => {
+		response.send(results);
 	});
 });
 
@@ -71,7 +81,7 @@ app.route('/api/progressions/:userID/:showOnlyUserProgressions/:progressionName'
 
 // Start server
 app.listen(SERVER_CONFIG.port, () => {
-	console.log('Server listening on ' + SERVER_CONFIG.port);
+	console.log('Server listening on ' + SERVER_CONFIG.port + '...');
 });
 
 

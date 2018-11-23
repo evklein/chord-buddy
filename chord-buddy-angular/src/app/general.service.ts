@@ -17,6 +17,8 @@ export class GeneralService {
   }
 
   apiPost(url, postData, callBackFunction: (data) => void) {
-
+    this.httpClient.post(this.SERVER_ADDR + url, postData).subscribe((response) => {
+      callBackFunction(response);
+    });
   }
 }

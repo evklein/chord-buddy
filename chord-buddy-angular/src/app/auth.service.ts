@@ -44,6 +44,8 @@ export class AuthService {
         this.registerNewUser();
       } else {
         this.userID = data[0].id;
+        this.router.navigateByUrl('/view-progressions');
+        console.log('Logged in...');
       }
     });
   }
@@ -51,6 +53,7 @@ export class AuthService {
   registerNewUser() {
     this.generalService.apiPost('api/register', { 'email' : this.userEmail }, (data) => {
       this.userID = data.insertId;
+      this.router.navigateByUrl('/view-progressions');
     });
   }
 
@@ -58,6 +61,7 @@ export class AuthService {
     this.firebaseToken = null;
     this.userEmail = null;
     this.userID = 0;
+    this.router.navigateByUrl('/');
   }
 
   // Verify user logged in status and redirect to login if not logged in.

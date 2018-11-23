@@ -1,20 +1,39 @@
-<div>
-  <input type="text" placeholder="Progression name" [(ngModel)]="progressionName" />
+<div class="col-sm-12 text-center">
+  <input class="form-control text-center" type="text" placeholder="Progression name" [(ngModel)]="progressionName" />
   <div class="chordButtons">
-    <button (click)='addToProgressionList("A")'>A</button>
-    <button (click)='addToProgressionList("B")'>B</button>
-    <button (click)='addToProgressionList("C")'>C</button>
-    <button (click)='addToProgressionList("D")'>D</button>
-    <button (click)='addToProgressionList("E")'>E</button>
-    <button (click)='addToProgressionList("F")'>F</button>
-    <button (click)='addToProgressionList("G")'>G</button>
+    <div class="btn-group-vertical">
+      <button class="btn btn-primary" (click)='addToProgressionList("A♭")'>A♭</button>
+      <button class="btn btn-primary" (click)='addToProgressionList("G#")'>G#</button>
+    </div>
+    <button class="btn btn-primary" (click)='addToProgressionList("A")'>A</button>
+    <div class="btn-group-vertical">
+      <button class="btn btn-primary" (click)='addToProgressionList("B♭")'>B♭</button>
+      <button class="btn btn-primary" (click)='addToProgressionList("A#")'>A#</button>
+    </div>
+    <button class="btn btn-primary" (click)='addToProgressionList("B")'>B</button>
+    <button class="btn btn-primary" (click)='addToProgressionList("C")'>C</button>
+    <div class="btn-group-vertical">
+        <button class="btn btn-primary" (click)='addToProgressionList("D♭")'>D♭</button>
+        <button class="btn btn-primary" (click)='addToProgressionList("C#")'>C#</button>
+      </div>
+    <button class="btn btn-primary" (click)='addToProgressionList("D")'>D</button>
+    <div class="btn-group-vertical">
+        <button class="btn btn-primary" (click)='addToProgressionList("E♭")'>E♭</button>
+        <button class="btn btn-primary" (click)='addToProgressionList("D#")'>D#</button>
+      </div>
+    <button class="btn btn-primary" (click)='addToProgressionList("E")'>E</button>
+    <button class="btn btn-primary" (click)='addToProgressionList("F")'>F</button>
+    <div class="btn-group-vertical">
+        <button class="btn btn-primary" (click)='addToProgressionList("G♭")'>G♭</button>
+        <button class="btn btn-primary" (click)='addToProgressionList("F#")'>F#</button>
+      </div>
   </div>
   <div class="chordShow">
-    <div class="chordListing" style="border: solid 1px black">
+    <div class="chordListing">
       <span *ngFor="let chord of progressionList">{{ chord }} </span>
     </div>
   </div>
   <div class="buttons">
-    <button (click)="saveProgression()">Save Progression</button>
+    <button class="btn btn-success" (click)="saveProgression()">Save Progression</button>
   </div>
 </div>

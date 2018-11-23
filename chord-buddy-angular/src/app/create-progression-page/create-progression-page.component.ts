@@ -15,19 +15,30 @@ export class CreateProgressionPageComponent implements OnInit {
   constructor(private authService: AuthService, private generalService: GeneralService) { }
 
   ngOnInit() {
-    //this.authService.verifyUserToken();
+    this.authService.verifyUserToken();
   }
 
   addToProgressionList(chord) {
-    this.progressionList.push(chord);
+    this.progressionList.push({ 'rootNote': chord, 'modifier': '', 'addIntervals': '' });
   }
 
   stringifyProgressionList() {
-    let string = this.progressionList[0];
+    let string = this.progressionList[0].rootNote + this.progressionList[0].modifier + this.progressionList[0].addIntervals;
     for (var i = 1; i < this.progressionList.length; i++) {
-      string += '|' + this.progressionList[i];
+      let chord = this.progressionList[i];
+      string += '|' + chord.rootNote + chord.modifier + chord.addIntervals;
     }
     return string;
+  }
+
+  addChordModifier(index, modifier) {
+    this.progressionList[index].modifier = modifier;
+  }
+
+  addChordIntervals(index, addInterval) {
+    if (this.progressionList[index].addIntervals.includes(addInterval)) return;
+
+    this.progressionList[index].addIntervals += addInterval;
   }
 
   saveProgression() {

@@ -1,4 +1,37 @@
 .form-control {
     margin-bottom: 10px;
-    width: 400px;
+    margin: 0 auto;
+    float: none;
+    margin-bottom: 20px;
+}
+
+.btn-success {
+    margin-top: 20px;
+}
+
+.chord {
+    border-radius: 15px;
+    width: 100px;
+    height: 120px;
+    display: inline-block;
+    margin-right: 20px;
+    margin-top: 20px;
+
+    /* Inner border css */
+    -webkit-box-shadow:inset 0px 0px 0px 1px black;
+    -moz-box-shadow:inset 0px 0px 0px 1px black;
+    box-shadow:inset 0px 0px 0px 1px black;
+}
+.chord:hover {
+    background-color: lavender;
+}
+
+.chordString {
+    margin-top: 15px;
+    font-size: 24px;
+}
+
+.chord-btn, .btn-group-vertical {
+    width: 100px;
+    border-radius: 15px;
 }

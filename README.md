@@ -5,6 +5,7 @@ Tool and social network that allows musicians to create and share chord progress
 ## Tools
 * Angular 6
 * Node
+* Express
 * MySQL (ClearDB w/ Heroku)
 * Hosting on Heroku (link to be posted later)
 * Twitter Bootstrap

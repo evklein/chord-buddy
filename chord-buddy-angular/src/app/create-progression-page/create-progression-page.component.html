@@ -1,3 +1,20 @@
-<p>
-  create-progression-page works!
-</p>
+<div>
+  <input type="text" placeholder="Progression name" [(ngModel)]="progressionName" />
+  <div class="chordButtons">
+    <button (click)='addToProgressionList("A")'>A</button>
+    <button (click)='addToProgressionList("B")'>B</button>
+    <button (click)='addToProgressionList("C")'>C</button>
+    <button (click)='addToProgressionList("D")'>D</button>
+    <button (click)='addToProgressionList("E")'>E</button>
+    <button (click)='addToProgressionList("F")'>F</button>
+    <button (click)='addToProgressionList("G")'>G</button>
+  </div>
+  <div class="chordShow">
+    <div class="chordListing" style="border: solid 1px black">
+      <span *ngFor="let chord of progressionList">{{ chord }} </span>
+    </div>
+  </div>
+  <div class="buttons">
+    <button (click)="saveProgression()">Save Progression</button>
+  </div>
+</div>

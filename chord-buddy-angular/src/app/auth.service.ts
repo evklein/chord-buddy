@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { GeneralService } from './general.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,9 @@ export class AuthService {
   // This data is linked from our server. 
   userID;
 
-  constructor(private angularFireAuth: AngularFireAuth, private generalService: GeneralService) { }
+  constructor(private angularFireAuth: AngularFireAuth, 
+    private generalService: GeneralService,
+    private router: Router) { }
 
   doGoogleAuthentication() {
     return new Promise<any>((resolve, reject) => {
@@ -55,5 +58,12 @@ export class AuthService {
     this.firebaseToken = null;
     this.userEmail = null;
     this.userID = 0;
+  }
+
+  // Verify user logged in status and redirect to login if not logged in.
+  verifyUserToken() {
+    if (!this.userID) {
+      this.router.navigateByUrl('/');
+    }
   }
 }

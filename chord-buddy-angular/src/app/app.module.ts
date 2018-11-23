@@ -14,6 +14,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { authEnvironment } from '../environments/auth.environment';
 import { AuthService } from './auth.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { AuthService } from './auth.service';
     CreateProgressionPageComponent,
   ],
   imports: [
+    FormsModule,
     AngularFireModule.initializeApp(authEnvironment),
     AngularFireAuthModule,
     AngularFireModule,

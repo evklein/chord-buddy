@@ -77,6 +77,19 @@ app.route('/api/progressions/:userID/:showOnlyUserProgressions/:progressionName'
 	});
 });
 
+app.route('/api/progressions').post((request, res) => {
+	let queryString = 'INSERT INTO progressions (name, owner_id, progression_string, num_chords, num_likes, shareable)';
+	queryString += 'VALUES (\'' + request.body.name + '\', ' + 
+		request.body.ownerID + ', \'' + request.body.progressionString + '\', ' + 
+		request.body.numChords + ', 1, ' + request.body.shareable + ')';
+
+	console.log(queryString);
+
+	connection.query(queryString, (error, results, fields) => {
+		res.send(results);
+	});
+});
+
 /* Progression Query Functions */
 
 // Start server

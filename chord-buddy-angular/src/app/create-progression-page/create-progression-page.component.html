@@ -31,24 +31,24 @@
   <div class="chordShow">
     <div class="chordListing">
       <div class="chord" *ngFor="let chord of progressionList; let i = index">
-        <h2 class="chordString">{{ chord.rootNote }}{{ chord.modifier }}{{ chord.addIntervals }}</h2>
+        <h2 class="chordString"><b>{{ chord.rootNote }}</b><span class="modifier">{{ chord.modifier }}{{ chord.addIntervals }}</span></h2>
         <div class="dropright">
-          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button class="btn btn-primary dropdown-toggle chord-button-top" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Chord Type
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <li><a class="dropdown-item" (click)="addChordModifier(i, '')">Major</a></li>
             <li><a class="dropdown-item" (click)="addChordModifier(i, 'm')">Minor</a></li>
-            <li><a class="dropdown-item" (click)="addChordModifier(i, 'o')">Diminished</a></li>
+            <li><a class="dropdown-item" (click)="addChordModifier(i, '°')">Diminished</a></li>
             <li><a class="dropdown-item" (click)="addChordModifier(i, '+')">Augmented</a></li>
             <li><a class="dropdown-item" (click)="addChordModifier(i, '7')">Dominant 7th</a></li>
-            <li><a class="dropdown-item" (click)="addChordModifier(i, 'maj7')">Major 7th</a></li>
+            <li><a class="dropdown-item" (click)="addChordModifier(i, 'M7')">Major 7th</a></li>
             <li><a class="dropdown-item" (click)="addChordModifier(i, 'm7')">Minor 7th</a></li>
-            <li><a class="dropdown-item" (click)="addChordModifier(i, 'm7♭5')">Minor 7 Flat 5</a></li>
+            <li><a class="dropdown-item" (click)="addChordModifier(i, 'ø')">Minor 7 Flat 5</a></li>
           </ul>
         </div>
         <div class="dropright">
-            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn-primary dropdown-toggle chord-button-bottom" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Add Interval
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">

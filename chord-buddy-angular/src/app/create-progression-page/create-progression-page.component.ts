@@ -15,7 +15,7 @@ export class CreateProgressionPageComponent implements OnInit {
   constructor(private authService: AuthService, private generalService: GeneralService) { }
 
   ngOnInit() {
-    this.authService.verifyUserToken();
+    //this.authService.verifyUserToken();
   }
 
   addToProgressionList(chord) {

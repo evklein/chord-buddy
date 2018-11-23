@@ -1,8 +1,16 @@
-<input type="text" placeholder="Search progressions by name"/>
-<label><input type="checkbox">Only show your progressions</label>
-<div class="progressions-listing">
-    <div *ngFor="let progression of progressionsToShow">
-        <p>{{ progression.name }}</p>
-        <p>{{ progression.progression_string }}</p>
+<div class="col-sm-12 text-center">
+    <input class="form-control col-lg-4" type="text" placeholder="Search progressions by name"/>
+    <label><input type="checkbox"> Only show your progressions</label>
+    <div class="progressions-listing">
+        <div  class="col-sm-7 progression" *ngFor="let progression of progressionsToShow">
+            <h5 class="progressionName">{{ progression.name }}</h5>
+            <div class="progressionChords">
+                <span class="chord" *ngFor="let chord of progression.progressionArray">
+                    {{ chord }}
+                </span>
+            </div>
+            <p class="ownerString">Made by: {{ progression.email }}</p>
+            <button class="btn btn-success likeButton"><i class="far fa-thumbs-up"></i> Like</button>
+        </div>
     </div>
 </div>

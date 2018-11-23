@@ -28,12 +28,6 @@ export class ViewProgressionsPageComponent implements OnInit {
     this.progressionsToShow.forEach(progression => {
       var progressionArray = progression.progression_string.split('|');
       progression.progressionArray = progressionArray;
-      
-      var newProgressionString = '';
-      progressionArray.forEach(chord => {
-        newProgressionString += chord + ' ';
-      });
-      progression.progression_string = newProgressionString;
     });
   }
 

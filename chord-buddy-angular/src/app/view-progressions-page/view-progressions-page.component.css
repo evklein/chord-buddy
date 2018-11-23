@@ -1,0 +1,47 @@
+.form-control {
+    margin-bottom: 10px;
+    margin: 0 auto;
+    float: none;
+    margin-bottom: 20px;
+}
+
+.progression {
+    border: 1px solid black;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    float: none;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+.progression:hover {
+    background-color: lavender;
+}
+
+.progressionName {
+    float: left;
+    margin: 10px;
+    font-size: 28px;
+}
+
+.progressionChords {
+    margin-top: 50px;
+    margin-left: 70px;
+}
+
+.chord {
+    border: 1px solid black;
+    width: 50px;
+    height: 50px;
+    margin-left: 5px;
+    padding: 20px;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.ownerString {
+    margin-left: 85%;
+}
+.likeButton {
+    margin-left: 91%;
+    margin-bottom: 10px;
+}

@@ -66,4 +66,11 @@ export class AuthService {
       this.router.navigateByUrl('/');
     }
   }
+
+  isLoggedIn() {
+    if (this.userID) {
+      return true;
+    }
+    return false;
+  }
 }

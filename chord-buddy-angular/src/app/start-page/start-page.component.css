@@ -1,0 +1,32 @@
+.larger-logo {
+    font-size: 32px;
+    margin-right: 10px;
+}
+
+.btn {
+    margin: 20px;
+    padding: 20px;
+    font-size: 24px;
+}
+
+.title {
+    margin-bottom: 25px;
+}
+
+.google-login-btn {
+    background-color: orangered;
+    border-color: orangered;
+}
+.google-login-btn:hover {
+    background-color: #FF4555;
+    border-color: #ff4555;
+}
+
+.github-login-btn {
+    background-color: grey;
+    border-color: grey;
+}
+.github-login-btn:hover {
+    background-color: lightslategray;
+    border-color: lightslategray;
+}

@@ -5,12 +5,21 @@
 
 .btn {
     margin: 20px;
-    padding: 20px;
-    font-size: 24px;
+    margin-bottom: 0;
+    padding: 8px;
+    font-size: 22px;
+    border-radius: 5px;
+    width: 350px;
 }
 
 .title {
     margin-bottom: 25px;
+    color: papayawhip;
+    font-size: 48px;
+}
+
+.text-muted {
+    color: #112D32 !important;
 }
 
 .google-login-btn {
@@ -18,15 +27,15 @@
     border-color: orangered;
 }
 .google-login-btn:hover {
-    background-color: #FF4555;
-    border-color: #ff4555;
+    background-color: orange;
+    border-color: orange;
 }
 
 .github-login-btn {
-    background-color: grey;
-    border-color: grey;
+    background-color: #4F4A41;
+    border-color: #4F4A41;
 }
 .github-login-btn:hover {
-    background-color: lightslategray;
-    border-color: lightslategray;
+    background-color: #6E6658;
+    border-color: #6E6658;
 }

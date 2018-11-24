@@ -1,14 +1,16 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { GeneralService } from './general.service';
 import { Router } from '@angular/router';
+import { EventEmitter } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
+  @Output() getLoggedIn: EventEmitter<any> = new EventEmitter();
   sessionToken = null;
 
   constructor(private angularFireAuth: AngularFireAuth, 
@@ -42,6 +44,7 @@ export class AuthService {
       } else {
         this.sessionToken.userID = data[0].id;
         this.router.navigateByUrl('/view-progressions');
+        this.getLoggedIn.emit(true);
       }
     });
   }
@@ -49,13 +52,14 @@ export class AuthService {
   registerNewUser() {
     this.generalService.apiPost('api/register', { 'email' : this.sessionToken.userEmail, 
       'name': this.sessionToken.userName }, (data) => {
-      console.log(data);
       this.sessionToken.userID = data.insertId;
+      this.getLoggedIn.emit(true);
       this.router.navigateByUrl('/view-progressions');
     });
   }
 
   logout() {
+    this.getLoggedIn.emit(false);
     this.sessionToken = null;
     this.router.navigateByUrl('/');
   }

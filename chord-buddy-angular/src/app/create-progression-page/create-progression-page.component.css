@@ -34,6 +34,7 @@
     display: inline-block;
     margin-right: 20px;
     margin-top: 20px;
+    background-color: #254E58;
 
     /* Inner border css */
     /* -webkit-box-shadow:inset 0px 0px 0px 1px black;
@@ -42,22 +43,36 @@
     border: 1px solid black;
 }
 .chord:hover {
-    background-color: lavender;
+    background-color: #112D32;
 }
 
 .chordString {
     margin-top: 15px;
-    margin-bottom: 10px;
+    margin-bottom: 18px;
     font-size: 24px;
+}
+
+.btn-primary {
+    background-color: #254E58;
+    border-color: #254E58;
+}
+.btn-primary:hover {
+    background-color: #112D32;
+    border-color: #112D32;
 }
 
 .chord-btn, .btn-group-vertical {
     width: 130px;
     border-radius: 5px;
 }
+.chord-btn:hover {
+    background-color: #254EAA;
+    border-color: #254EAA;
+}
 
 .chord-button-top {
     border-radius: 0;
+    width: 128px;
 }
 
 .chord-button-mid {

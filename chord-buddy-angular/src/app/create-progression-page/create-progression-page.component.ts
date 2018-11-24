@@ -42,6 +42,8 @@ export class CreateProgressionPageComponent implements OnInit {
   }
 
   saveProgression() {
+    if (!this.validateData()) return;
+
     let postData = {
       'progressionString': this.stringifyProgressionList(),
       'name': this.progressionName,
@@ -51,7 +53,8 @@ export class CreateProgressionPageComponent implements OnInit {
     };
     
     this.generalService.apiPost('api/progressions', postData, (data) => {
-      console.log(data);
+      alert('Progression saved successfully!');
+      this.deleteProgression();
     });
   }
 
@@ -62,5 +65,17 @@ export class CreateProgressionPageComponent implements OnInit {
   deleteProgression() {
     this.progressionList = [];
     this.progressionName = '';
+  }
+
+  validateData() {
+    if (this.progressionName === '') {
+      alert('Please add a name before saving.');
+      return false;
+    } else if (this.progressionList.length === 0) {
+      alert('Your progression is empty, please add some chords before submitting.');
+      return false;
+    }
+
+    return true;
   }
 }

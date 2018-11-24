@@ -8,7 +8,16 @@ import { AuthService } from '../auth.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  loggedInStatus = false;
+
+  constructor(private authService: AuthService) {
+    authService.getLoggedIn.subscribe((status) => this.changeStatus(status));
+   }
 
   ngOnInit() {}
+
+  changeStatus(val) {
+    console.log("Changing status: " + val);
+    this.loggedInStatus = val;
+  }
 }

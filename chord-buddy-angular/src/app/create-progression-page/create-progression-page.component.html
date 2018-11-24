@@ -34,7 +34,7 @@
       <div class="chord slideInRight" *ngFor="let chord of progressionList; let i = index">
         <h2 class="chordString"><b>{{ chord.rootNote }}</b><span class="modifier">{{ chord.modifier }}{{ chord.addIntervals }}</span></h2>
         <div class="dropright">
-          <button class="btn btn-primary dropdown-toggle chord-button-top" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button class="btn btn-primary chord-btn dropdown-toggle chord-button-top" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Chord Type
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -49,7 +49,7 @@
           </ul>
         </div>
         <div class="dropright">
-            <button class="btn btn-primary dropdown-toggle chord-button-mid" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn-primary chord-btn dropdown-toggle chord-button-mid" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Add Interval
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
@@ -59,7 +59,7 @@
               </ul>
         </div>
         <div class="lastButton">
-            <button class="btn btn-danger chord-btn chord-button-bottom" type="button" aria-haspopup="true" aria-expanded="false" (click)="deleteChord(i)">
+            <button class="btn btn-danger chord-button-bottom" type="button" aria-haspopup="true" aria-expanded="false" (click)="deleteChord(i)">
                 <i class="fas fa-trash-alt"></i> Delete
               </button>
         </div>

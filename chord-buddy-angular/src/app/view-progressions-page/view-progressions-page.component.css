@@ -6,42 +6,49 @@
 }
 
 .progression {
-    border: 1px solid black;
-    border-radius: 15px;
+    border: 1px solid grey;
+    border-radius: 5px;
     margin-bottom: 10px;
     float: none;
     margin: 0 auto;
     margin-bottom: 20px;
-}
-.progression:hover {
-    background-color: lavender;
 }
 
 .progressionName {
     float: left;
     margin: 10px;
     font-size: 28px;
+    width: 150px;
 }
 
 .progressionChords {
+    float: left;
     margin-top: 50px;
     margin-left: 70px;
+    width: 550px;
 }
 
 .chord {
-    border: 1px solid black;
-    width: 50px;
-    height: 50px;
     margin-left: 5px;
-    padding: 20px;
+    font-size: 28px;
+    height: 90px;
+    float: left;
+}
+
+.chord-wrapper {
     border-radius: 5px;
-    font-size: 20px;
+    border: 1px solid lightslategrey;
+    padding: 20px;
+}
+.chord-wrapper:hover {
+    background-color: lavender;
 }
 
 .ownerString {
-    margin-left: 85%;
+    float: right;
+    margin-top: 10px;
 }
 .likeButton {
-    margin-left: 91%;
+    margin-left: 92%;
     margin-bottom: 10px;
 }

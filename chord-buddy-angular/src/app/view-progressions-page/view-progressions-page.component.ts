@@ -12,7 +12,7 @@ export class ViewProgressionsPageComponent implements OnInit {
   constructor(private generalService: GeneralService, private authService: AuthService) { }
 
   // userID = this.authService.sessionToken.userID;
-  userID = 111;
+  userID = 111; // REMOVE∂
   searchTerm = '';
   onlyShowUserProgressions = false;
   progressionsToShow = [];

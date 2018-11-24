@@ -9,12 +9,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-  // Firebase data
-  firebaseToken;
-  userEmail;
-
-  // This data is linked from our server. 
-  userID;
+  sessionToken = null;
 
   constructor(private angularFireAuth: AngularFireAuth, 
     private generalService: GeneralService,
@@ -28,7 +23,6 @@ export class AuthService {
       this.angularFireAuth.auth
       .signInWithPopup(provider)
       .then(res => {
-        this.firebaseToken = res.credential['idToken'];
         this.saveTokenAndID(res)
         resolve(res);
       });
@@ -36,14 +30,16 @@ export class AuthService {
   }
 
   saveTokenAndID(firebaseResponse) {
-    this.firebaseToken = firebaseResponse.credential.idToken;
-    this.userEmail = firebaseResponse.user.email;
+    this.sessionToken = {
+      'firebaseToken': firebaseResponse.credential.idToken,
+      'userEmail': firebaseResponse.user.email
+    }
 
-    this.generalService.apiGet('api/login/' + this.userEmail, (data) => {
+    this.generalService.apiGet('api/login/' + this.sessionToken.userEmail, (data) => {
       if (data.length == 0) {
         this.registerNewUser();
       } else {
-        this.userID = data[0].id;
+        this.sessionToken.userID = data[0].id;
         this.router.navigateByUrl('/view-progressions');
         console.log('Logged in...');
       }
@@ -51,30 +47,26 @@ export class AuthService {
   }
 
   registerNewUser() {
-    this.generalService.apiPost('api/register', { 'email' : this.userEmail }, (data) => {
-      this.userID = data.insertId;
+    this.generalService.apiPost('api/register', { 'email' : this.sessionToken.email }, (data) => {
+      this.sessionToken.userID = data.insertId;
       this.router.navigateByUrl('/view-progressions');
     });
   }
 
   logout() {
-    this.firebaseToken = null;
-    this.userEmail = null;
-    this.userID = 0;
+    this.sessionToken = null;
     this.router.navigateByUrl('/');
   }
 
   // Verify user logged in status and redirect to login if not logged in.
   verifyUserToken() {
-    if (!this.userID) {
+    if (!this.sessionToken) {
       this.router.navigateByUrl('/');
     }
   }
 
   isLoggedIn() {
-    if (this.userID) {
-      return true;
-    }
+    if (this.sessionToken) return true;
     return false;
   }
 }

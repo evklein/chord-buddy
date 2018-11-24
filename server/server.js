@@ -21,23 +21,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-var connection;
-
-/* SQL Handler Function, starts loop again if it disconnects. */
-function connectToSQLAndHandle() {
-	connection = mysql.createConnection(DB_CONFIG);
-	connection.connect((error) => {
-		if (error) {
-			console.log('SQL connection error.');
-			setTimeout(connectToSQLAndHandle, 2000);
-		}
-	});
-
-	connection.on('error', (error) => {
-		if (error === 'PROTOCOL_CONNECTION_LOST') connectToSQLAndHandle();
-	});
-}
-connectToSQLAndHandle();
+var connection = mysql.createPool(DB_CONFIG);
 
 /* App routes */
 

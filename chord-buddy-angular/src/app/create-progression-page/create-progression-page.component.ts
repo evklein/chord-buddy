@@ -47,11 +47,20 @@ export class CreateProgressionPageComponent implements OnInit {
       'name': this.progressionName,
       'numChords': this.progressionList.length,
       'shareable': 1, // todo,
-      'ownerID': this.authService.userID
+      'ownerID': this.authService.sessionToken.userID
     };
     
     this.generalService.apiPost('api/progressions', postData, (data) => {
       console.log(data);
     });
+  }
+
+  deleteChord(index) {
+    this.progressionList.splice(index, 1);
+  }
+
+  deleteProgression() {
+    this.progressionList = [];
+    this.progressionName = '';
   }
 }

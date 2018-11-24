@@ -1,36 +1,37 @@
 <div class="col-sm-12 text-center">
-  <input class="form-control col-lg-4" type="text" placeholder="Progression name" [(ngModel)]="progressionName" />
+  <input class="form-control col-lg-5" type="text" placeholder="Progression name" [(ngModel)]="progressionName" />
   <div class="chordButtons">
     <div class="btn-group-vertical">
       <button class="btn btn-primary" (click)='addToProgressionList("A♭")'>A♭</button>
       <button class="btn btn-primary" (click)='addToProgressionList("G#")'>G#</button>
     </div>
-    <button class="btn btn-primary" (click)='addToProgressionList("A")'>A</button>
+    <button class="btn btn-primary non-accidental" (click)='addToProgressionList("A")'>A</button>
     <div class="btn-group-vertical">
       <button class="btn btn-primary" (click)='addToProgressionList("B♭")'>B♭</button>
       <button class="btn btn-primary" (click)='addToProgressionList("A#")'>A#</button>
     </div>
-    <button class="btn btn-primary" (click)='addToProgressionList("B")'>B</button>
-    <button class="btn btn-primary" (click)='addToProgressionList("C")'>C</button>
+    <button class="btn btn-primary non-accidental" (click)='addToProgressionList("B")'>B</button>
+    <button class="btn btn-primary non-accidental" (click)='addToProgressionList("C")'>C</button>
     <div class="btn-group-vertical">
         <button class="btn btn-primary" (click)='addToProgressionList("D♭")'>D♭</button>
         <button class="btn btn-primary" (click)='addToProgressionList("C#")'>C#</button>
       </div>
-    <button class="btn btn-primary" (click)='addToProgressionList("D")'>D</button>
+    <button class="btn btn-primary non-accidental" (click)='addToProgressionList("D")'>D</button>
     <div class="btn-group-vertical">
         <button class="btn btn-primary" (click)='addToProgressionList("E♭")'>E♭</button>
         <button class="btn btn-primary" (click)='addToProgressionList("D#")'>D#</button>
       </div>
-    <button class="btn btn-primary" (click)='addToProgressionList("E")'>E</button>
-    <button class="btn btn-primary" (click)='addToProgressionList("F")'>F</button>
+    <button class="btn btn-primary non-accidental" (click)='addToProgressionList("E")'>E</button>
+    <button class="btn btn-primary non-accidental" (click)='addToProgressionList("F")'>F</button>
     <div class="btn-group-vertical">
         <button class="btn btn-primary" (click)='addToProgressionList("G♭")'>G♭</button>
         <button class="btn btn-primary" (click)='addToProgressionList("F#")'>F#</button>
       </div>
+    <button class="btn btn-primary non-accidental far-right-btn" (click)='addToProgressionList("G")'>G</button>
   </div>
   <div class="chordShow">
     <div class="chordListing">
-      <div class="chord" *ngFor="let chord of progressionList; let i = index">
+      <div class="chord slideInRight" *ngFor="let chord of progressionList; let i = index">
         <h2 class="chordString"><b>{{ chord.rootNote }}</b><span class="modifier">{{ chord.modifier }}{{ chord.addIntervals }}</span></h2>
         <div class="dropright">
           <button class="btn btn-primary dropdown-toggle chord-button-top" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -48,7 +49,7 @@
           </ul>
         </div>
         <div class="dropright">
-            <button class="btn btn-primary dropdown-toggle chord-button-bottom" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn-primary dropdown-toggle chord-button-mid" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Add Interval
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
@@ -57,10 +58,17 @@
                 <li><a class="dropdown-item" (click)="addChordIntervals(i, 'add13')">Add 13</a></li>
               </ul>
         </div>
+        <div class="lastButton">
+            <button class="btn btn-danger chord-btn chord-button-bottom" type="button" aria-haspopup="true" aria-expanded="false" (click)="deleteChord(i)">
+                <i class="fas fa-trash-alt"></i> Delete
+              </button>
+        </div>
       </div>
     </div>
   </div>
   <div class="buttons">
-    <button class="btn btn-success" (click)="saveProgression()">Save Progression</button>
+    <button class="btn btn-lg btn-success" (click)="saveProgression()">Save Progression</button>
+    <button class="btn btn-lg btn-danger btn-danger-custom" (click)="deleteProgression()"><i class="fas fa-trash-alt"></i>  Delete Progression</button>
   </div>
 </div>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">

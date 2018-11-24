@@ -35,9 +35,11 @@ app.route('/api/login/:email').get((request, response) => {
 });
 
 app.route('/api/register').post((request, response) => {
-	let queryString = 'INSERT INTO users (email, num_progressions) VALUES (\'' + request.body.email + '\', 0)';
+	let queryString = 'INSERT INTO users (email, name) VALUES (\'' + request.body.email + '\', \''
+		 + request.body.name + '\')';
 	
 	connection.query(queryString, (error, results, fields) => {
+		if (error) console.log(error);
 		response.send(results);
 	});
 });
@@ -71,6 +73,14 @@ app.route('/api/progressions').post((request, res) => {
 
 	connection.query(queryString, (error, results, fields) => {
 		res.send(results);
+	});
+});
+
+app.route('/api/users/:id').get((request, response) => {
+	let queryString = 'SELECT name FROM users WHERE id = ' + request.params['id'];
+
+	connection.query(queryString, (error, results, fields) => {
+		response.send(results);
 	});
 });
 

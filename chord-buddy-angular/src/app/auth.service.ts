@@ -32,7 +32,8 @@ export class AuthService {
   saveTokenAndID(firebaseResponse) {
     this.sessionToken = {
       'firebaseToken': firebaseResponse.credential.idToken,
-      'userEmail': firebaseResponse.user.email
+      'userEmail': firebaseResponse.user.email,
+      'userName': firebaseResponse.user.displayName
     }
 
     this.generalService.apiGet('api/login/' + this.sessionToken.userEmail, (data) => {
@@ -41,13 +42,14 @@ export class AuthService {
       } else {
         this.sessionToken.userID = data[0].id;
         this.router.navigateByUrl('/view-progressions');
-        console.log('Logged in...');
       }
     });
   }
 
   registerNewUser() {
-    this.generalService.apiPost('api/register', { 'email' : this.sessionToken.email }, (data) => {
+    this.generalService.apiPost('api/register', { 'email' : this.sessionToken.userEmail, 
+      'name': this.sessionToken.userName }, (data) => {
+      console.log(data);
       this.sessionToken.userID = data.insertId;
       this.router.navigateByUrl('/view-progressions');
     });

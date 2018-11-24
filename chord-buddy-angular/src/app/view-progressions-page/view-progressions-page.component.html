@@ -1,6 +1,6 @@
 <div class="col-sm-12 text-center">
-    <input class="form-control col-lg-4" type="text" placeholder="Search progressions by name"/>
-    <label><input type="checkbox"> Only show your progressions</label>
+    <input (input)="getProgressions()" [(ngModel)]="searchTerm" class="form-control col-lg-4" type="text" placeholder="Search progressions by name"/>
+    <label><input (change)="getProgressions()" [(ngModel)]="onlyShowUserProgressions" type="checkbox"> Only show your progressions</label>
     <div class="progressions-listing">
         <div  class="col-sm-7 progression" *ngFor="let progression of progressionsToShow">
             <h5 class="progressionName">{{ progression.name }}</h5>
@@ -9,7 +9,7 @@
                     {{ chord }}
                 </span>
             </div>
-            <p class="ownerString">Made by: {{ progression.email }}</p>
+            <p class="ownerString">{{ progression.ownerName }}</p>
             <button class="btn btn-success likeButton"><i class="far fa-thumbs-up"></i> Like</button>
         </div>
     </div>

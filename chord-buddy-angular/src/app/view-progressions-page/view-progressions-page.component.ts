@@ -11,19 +11,28 @@ export class ViewProgressionsPageComponent implements OnInit {
 
   constructor(private generalService: GeneralService, private authService: AuthService) { }
 
-  userID = 1; // Todo
+  // userID = this.authService.sessionToken.userID;
+  userID = 111;
+  searchTerm = '';
+  onlyShowUserProgressions = false;
   progressionsToShow = [];
 
   ngOnInit() {
-    let apiString = 'api/progressions/' + this.userID + '/false/none';
+    this.getProgressions();
+  }
+
+  getProgressions() {
+    let trueSearchTerm = this.searchTerm;
+    if (this.searchTerm === '') trueSearchTerm = 'none';
+
+    let apiString = 'api/progressions/' + this.userID + '/' + this.onlyShowUserProgressions + '/' + trueSearchTerm;
     this.generalService.apiGet(apiString, (data) => {
       this.progressionsToShow = data;
-      console.log(this.progressionsToShow);
       this.parseProgressionStrings();
+      this.getOwnerNames();
     });
   }
 
-  // TODO will need to be a bit more fleshed out for final version, but this is a good start.
   parseProgressionStrings() {
     this.progressionsToShow.forEach(progression => {
       var progressionArray = progression.progression_string.split('|');
@@ -31,4 +40,12 @@ export class ViewProgressionsPageComponent implements OnInit {
     });
   }
 
+  getOwnerNames() {
+    let apiString = 'api/users/';
+    this.progressionsToShow.forEach(progression => {
+      this.generalService.apiGet(apiString +  progression.owner_id, (data) => {
+        progression.ownerName = data[0].name;
+      });
+    });
+  }
 }

@@ -30,6 +30,7 @@ export class ViewProgressionsPageComponent implements OnInit {
       this.progressionsToShow = data;
       this.parseProgressionStrings();
       this.getOwnerNames();
+      this.sortProgressionsByLikes();
     });
   }
 
@@ -47,5 +48,19 @@ export class ViewProgressionsPageComponent implements OnInit {
         progression.ownerName = data[0].name;
       });
     });
+  }
+
+  sortProgressionsByLikes() {
+    this.progressionsToShow.sort((first, second) => {
+      if (first.num_likes < second.num_likes)  return 1;
+      else if (first.num_likes > second.num_likes) return -1;
+      else return 0;
+    });
+  }
+
+  likeProgression(id) {
+    console.log('id: ' + id);
+    this.generalService.apiPost('api/like', { 'progressionID': id }, (data) => {});
+    console.log(this.progressionsToShow);
   }
 }

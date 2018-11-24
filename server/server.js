@@ -84,6 +84,16 @@ app.route('/api/users/:id').get((request, response) => {
 	});
 });
 
+app.route('/api/like').post((request, response) => {
+	console.log(request.body.progressionID);
+	let queryString = 'UPDATE progressions SET num_likes = num_likes + 1 WHERE id = ' + request.body.progressionID;
+
+	console.log(queryString);
+	connection.query(queryString, (error, results, fields) => {
+		response.send(results);
+	});
+});
+
 /* Progression Query Functions */
 
 // Start server

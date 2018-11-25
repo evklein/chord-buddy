@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -8,16 +8,16 @@ import { AuthService } from '../auth.service';
 })
 export class HeaderComponent implements OnInit {
 
-  loggedInStatus = false;
+  @Input() loggedInStatus = false;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private changeDetectorRef: ChangeDetectorRef) {
     authService.getLoggedIn.subscribe((status) => this.changeStatus(status));
    }
 
   ngOnInit() {}
 
   changeStatus(val) {
-    console.log("Changing status: " + val);
     this.loggedInStatus = val;
+    this.changeDetectorRef.detectChanges(); // Updates header for logged in headers.
   }
 }

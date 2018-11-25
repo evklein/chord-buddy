@@ -1,12 +1,12 @@
 <nav class="navbar navbar-expand-lg">
-  <a class="navbar-brand" routerLink="/">Chord Buddy <i class="fas fa-music"></i></a>
-  <ul class="navbar-nav" *ngIf="this.loggedInStatus">
+  <a class="navbar-brand" routerLink="/">Chord Buddy {{ loggedInStatus }} <i class="fas fa-music"></i></a>
+  <ul class="navbar-nav" *ngIf="loggedInStatus">
     <li class="nav-item"><a class="nav-link" routerLink="/create-progression">Create Progression</a></li>
     <li class="nav-item"><a class="nav-link" routerLink="/view-progressions">View Progressions</a></li>
   </ul>
   <ul class="navbar-nav ml-auto">
-      <li class="nav-item" *ngIf="this.loggedInStatus"><a class="nav-link" (click)="this.authService.logout()">Logout</a></li>
-      <li class="nav-item" *ngIf="!this.loggedInStatus"><a class="nav-link" routerLink="/">Login</a></li>
+      <li class="nav-item" *ngIf="loggedInStatus"><a class="nav-link" (click)="this.authService.logout()">Logout</a></li>
+      <li class="nav-item" *ngIf="!loggedInStatus"><a class="nav-link" routerLink="/">Login</a></li>
   </ul>
 </nav>
 <hr />

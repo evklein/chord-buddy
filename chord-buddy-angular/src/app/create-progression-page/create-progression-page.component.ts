@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
-import { GeneralService } from '../general.service';
+import { AuthService } from '../services/auth.service';
+import { GeneralService } from '../services/general.service';
 
 @Component({
   selector: 'app-create-progression-page',

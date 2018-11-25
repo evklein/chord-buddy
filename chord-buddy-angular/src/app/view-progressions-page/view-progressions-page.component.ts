@@ -11,13 +11,13 @@ export class ViewProgressionsPageComponent implements OnInit {
 
   constructor(private generalService: GeneralService, private authService: AuthService) { }
 
-  // userID = this.authService.sessionToken.userID;
-  userID = 111; // REMOVE∂
+  userID = this.authService.sessionToken.userID;
   searchTerm = '';
   onlyShowUserProgressions = false;
   progressionsToShow = [];
 
   ngOnInit() {
+    this.authService.verifyUserToken();
     this.getProgressions();
   }
 
@@ -59,8 +59,6 @@ export class ViewProgressionsPageComponent implements OnInit {
   }
 
   likeProgression(id) {
-    console.log('id: ' + id);
     this.generalService.apiPost('api/like', { 'progressionID': id }, (data) => {});
-    console.log(this.progressionsToShow);
   }
 }

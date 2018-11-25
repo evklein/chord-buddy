@@ -11,11 +11,12 @@ export class CreateProgressionPageComponent implements OnInit {
 
   progressionList = [];
   progressionName = '';
+  shareable = false;
 
   constructor(private authService: AuthService, private generalService: GeneralService) { }
 
   ngOnInit() {
-    //this.authService.verifyUserToken();
+    this.authService.verifyUserToken();
   }
 
   addToProgressionList(chord) {
@@ -48,7 +49,7 @@ export class CreateProgressionPageComponent implements OnInit {
       'progressionString': this.stringifyProgressionList(),
       'name': this.progressionName,
       'numChords': this.progressionList.length,
-      'shareable': 1, // todo,
+      'shareable': this.shareable ? 1 : 0,
       'ownerID': this.authService.sessionToken.userID
     };
     

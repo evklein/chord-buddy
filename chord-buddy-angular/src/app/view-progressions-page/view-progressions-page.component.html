@@ -3,7 +3,7 @@
     <label><input (change)="getProgressions()" [(ngModel)]="onlyShowUserProgressions" type="checkbox"> Only show your progressions</label>
     <div class="progressions-listing">
         <div  class="col-sm-8 progression" *ngFor="let progression of progressionsToShow">
-            <h5 class="progressionName">{{ progression.name }}</h5>
+            <h5 class="progressionName"><span *ngIf="progression.owner_id == userID && !progression.shareable"><i class="fas fa-lock"></i></span> {{ progression.name }}</h5>
             <div class="progressionChords">
                 <div class="chord" *ngFor="let chord of progression.progressionArray">
                     <span class="chord-wrapper">{{ chord }}</span>

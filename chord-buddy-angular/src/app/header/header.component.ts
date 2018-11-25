@@ -12,12 +12,12 @@ export class HeaderComponent implements OnInit {
 
   constructor(private authService: AuthService, private changeDetectorRef: ChangeDetectorRef) {
     authService.getLoggedIn.subscribe((status) => this.changeStatus(status));
-   }
+    }
 
   ngOnInit() {}
 
   changeStatus(val) {
     this.loggedInStatus = val;
-    this.changeDetectorRef.detectChanges(); // Updates header for logged in headers.
+
   }
 }

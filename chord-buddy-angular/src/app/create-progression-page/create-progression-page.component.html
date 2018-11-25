@@ -1,5 +1,6 @@
 <div class="col-sm-12 text-center">
   <input class="form-control col-lg-5" type="text" placeholder="Progression name" [(ngModel)]="progressionName" />
+  <label><input [(ngModel)]="shareable" type="checkbox">  Make public</label>
   <div class="chordButtons">
     <div class="btn-group-vertical">
       <button class="btn btn-primary" (click)='addToProgressionList("A♭")'>A♭</button>
@@ -45,7 +46,9 @@
             <li><a class="dropdown-item" (click)="addChordModifier(i, '7')">Dominant 7th</a></li>
             <li><a class="dropdown-item" (click)="addChordModifier(i, 'M7')">Major 7th</a></li>
             <li><a class="dropdown-item" (click)="addChordModifier(i, 'm7')">Minor 7th</a></li>
-            <li><a class="dropdown-item" (click)="addChordModifier(i, 'ø')">Minor 7 Flat 5</a></li>
+            <li><a class="dropdown-item" (click)="addChordModifier(i, 'ø')">Minor 7th Flat 5th</a></li>
+            <li><a class="dropdown-item" (click)="addChordModifier(i, 'sus2')">Suspended 2nd</a></li>
+            <li><a class="dropdown-item" (click)="addChordModifier(i, 'sus4')">Suspended 4nd</a></li>
           </ul>
         </div>
         <div class="dropright">

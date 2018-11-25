@@ -10,6 +10,10 @@
     border-radius: 0;
 }
 
+label {
+    margin-bottom: 20px;
+}
+
 .far-right-btn {
     border-top-right-radius: 5px !important;
     border-bottom-right-radius: 5px !important;

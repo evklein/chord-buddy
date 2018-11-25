@@ -49,15 +49,12 @@ app.route('/api/progressions/:userID/:showOnlyUserProgressions/:progressionName'
 	let showOnlyUserProgressions = req.params['showOnlyUserProgressions'];
 	let progressionName = req.params['progressionName'];
 
-	let progressionQueryString = 'SELECT * FROM progressions';
+	let progressionQueryString = 'SELECT * FROM progressions WHERE owner_id != ' + userID + ' AND shareable = 1 OR owner_id = ' + userID;
+	if (showOnlyUserProgressions === 'true') progressionQueryString = 'SELECT * FROM progressions WHERE owner_id = ' + userID;
+	if (progressionName !== 'none') progressionQueryString = 'SELECT * FROM progressions WHERE owner_id != ' + userID + ' AND shareable = 1 AND name LIKE \'' + progressionName + '%\' OR owner_id = ' + userID + ' AND name LIKE \'' + progressionName + '%\'';
+	if (progressionName !== 'none' && showOnlyUserProgressions === 'true') progressionQueryString = 'SELECT * FROM progressions WHERE owner_id = ' + userID + ' AND name LIKE \'' + progressionName + '%\'';
 
-	if (showOnlyUserProgressions === 'true' && progressionName !== 'none') {
-		progressionQueryString += ' WHERE owner_id = ' + userID + ' AND name like \'' + progressionName + '%\''
-	} else {
-		if (showOnlyUserProgressions === 'true') progressionQueryString += ' WHERE owner_id = ' + userID;
-		if (progressionName !== 'none') progressionQueryString += ' WHERE name like \'' + progressionName + '%\'';
-	}
-
+	console.log(progressionQueryString);
 	connection.query(progressionQueryString, (error, results, fields) => {
 		res.send(results);
 	});
